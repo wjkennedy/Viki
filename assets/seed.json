@@ -1,0 +1,8 @@
+[
+ {"id":1,"title":"A workspace that belongs to you","body":"Keep knowledge local and available offline. Private notes and source documents stay on your computer. Portability and simple backups matter more than operating cloud infrastructure.","tags":["principle","local"],"links":[2,4]},
+ {"id":2,"title":"Storage without a server","body":"An embedded database holds vertices, relationships and provenance. Vector indexes are derived data and can be rebuilt. A single Rust process should own durable writes.","tags":["architecture"],"links":[1,3]},
+ {"id":3,"title":"Search should return context","body":"Combine keyword matching with vector similarity. Expand related vertices to include decisions and their supporting evidence. Every result should explain how it was found.","tags":["search","decision"],"links":[2,5,6]},
+ {"id":4,"title":"People and agents share the library","body":"Humans write and browse. Agents use MCP to retrieve context and propose links, tags and summaries. Changes should be attributable and reviewable.","tags":["agents"],"links":[1,5]},
+ {"id":5,"title":"Similarity is not evidence","body":"Two passages can be close in embedding space and disagree. Supporting and contradicting relationships require explicit evidence. Never promote a similarity score into a truth score.","tags":["trust","search"],"links":[3,4]},
+ {"id":6,"title":"Measure the first prototype","body":"Compare lexical, vector and hybrid retrieval on realistic questions. Track relevant results, source traceability and missing context. Use a small corpus before optimizing latency.","tags":["evaluation"],"links":[3]}
+]

@@ -1,0 +1,14 @@
+const {readFileSync}=require('node:fs');
+const vm=require('node:vm');
+const assert=require('node:assert/strict');
+const ctx=vm.createContext({});
+vm.runInContext(readFileSync('assets/marked.min.js','utf8'),ctx);
+vm.runInContext(readFileSync('assets/markup.js','utf8'),ctx);
+const parse=s=>vm.runInContext('marked.parse('+JSON.stringify(s)+')',ctx);
+assert.match(parse('[[Page#Section|label]]'),/data-wiki="Page#Section">label/);
+assert.match(parse('[https://example.org Reference]'),/href="https:\/\/example.org">Reference/);
+assert.match(parse('**bold**'),/<strong>bold<\/strong>/);
+assert.match(parse('<table><tr><td>value</td></tr></table>'),/<table>/);
+for(const source of ['`[[Page]]`','    [[Page]]','\\[\\[Page\\]\\]','<div>[[Page]]</div>'])assert.doesNotMatch(parse(source),/data-wiki/);
+assert.match(parse('[[Page|<img>]]'),/&lt;img&gt;/);
+console.log('Markup parsing checks passed');
